@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import Button from './components/Button'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+import Navbar from './components/Navbar';
+import { Products } from './views/Products';
+
 
 export default class App extends Component {
   constructor(props){
@@ -23,14 +26,13 @@ export default class App extends Component {
     const pep_talk = "UNDER ANY CIRCUMSTANCES DON'T GIVE UP!"
     return (
         <div className='container'>
-        <h1>{this.props.name}, {pep_talk}</h1>
-        <Button step={1} incrementCount={this.handleclick} />
-        <Button step={5} incrementCount={this.handleclick} />
-        <Button step={10} incrementCount={this.handleclick} />
-        <Button step={25} incrementCount={this.handleclick} />
-        <Button step={100} incrementCount={this.handleclick} />
-        <h6>Count is at {this.state.count}</h6>
-        {/* Now that the state is at the App.js level, the count can be totaled for all the buttons not just one button individually. */}
+        <Navbar />
+        <Router>
+            <h1>{this.props.name}, {pep_talk}</h1>
+          <Route exact path='/products'>
+            <Products />
+          </Route>
+        </Router>
       </div>
     )
   }
